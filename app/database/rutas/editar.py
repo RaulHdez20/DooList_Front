@@ -6,5 +6,5 @@ router = APIRouter()
 def editar():
     return [
         {"Accion": "Editar Tarea"},
-        {"id": 0, "tarea": "Renombrar Tarea", "hora": "Seleccionar", "status": "Seleccionar"},
+        {"id": 0, "tarea": "Renombrar Tarea","descripcion":"Vacio", "hora": "Seleccionar", "status": "Seleccionar"},
     ]

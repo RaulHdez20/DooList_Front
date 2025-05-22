@@ -6,5 +6,5 @@ router = APIRouter()
 def completadas():
     return [
         {"Accion": "!FELICIDADES¡TAREA COMPLETADA."},
-        {"id": 0, "tarea": "Tarea Completada", "hora": "Finalizado", "status": "Finalizado"},
+        {"id": 0, "tarea": "Tarea Completada","descripcion":"Vacio", "hora": "Finalizado", "status": "Finalizado"},
     ]
