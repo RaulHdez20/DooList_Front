@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.database.database import get_connection
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.database.rutas.conexion import router as conexion_router
 from app.database.rutas.usuarios import router as usuarios_router
@@ -11,6 +12,15 @@ from app.database.rutas.fechas import router as fechas_router
 from app.database.rutas.verificar import router as verificar_router
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[""],  # Permite todos los orígenes
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=[""],
+)
+
 
 # Incluir todos los routers
 app.include_router(conexion_router)
