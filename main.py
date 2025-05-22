@@ -17,71 +17,79 @@ def verificar_conexion():
     except Exception as e:
         return {"conexion": "fallida", "error": str(e)}
 
+# Este codigo es solo para verificar el estado de conexion de la base de datos 
 
 #--------------------------------------------------------------------------------------------
+# En este codigo veremos un mensaje principal sin tener que poner un endpoint cuando cargemos el enlace
 @app.get("/")
 def leer_root():
-    return {"mensaje": "Hola, este es el backend sin base de datos"}
+    return {"mensaje": "Hola, este es el backend sin base de datos"} # Lo que retorna es un mensaje de saludo anunciando que estas en el backend sin base de datos 
 
-@app.get("/usuarios")
-def users():
+
+# -------------------------------------------------------------------------------------------
+# En esta parte del codigo tenemos el Endpoint de Usuarios conectada a la base de datos 
+@app.get("/usuarios") # Direccion del Endpoint
+def users(): # Aqui comienza la estructuea de nuestra tabla dentro de MySql Workbench
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM usuarios")
     result = cursor.fetchall()
     cursor.close()
     conn.close()
-    return result
+    return result# En esta parte nos retorna los usuarios insertados en nuestra base de datos 
 
 
 # -----------------------------------------------------------------------------------------
 # Endpoint Añadir Tarea
-@app.get("/añadirtarea") # agregar descripcion parametros, lo que retorna y que devuelve.
+@app.get("/añadirtarea") # Este es el enlace de nuestro Endpoint
 def tarea():
-    tareas = [
-       {"id": 1, "tarea": "Comprar chelas", "hora":"1:00pm", "status":"No realizada"},
-       {"id": 2, "tarea": "Bañar a Tobi","hora":"3:30pm", "status":"Realizada"},
-       {"id": 3, "tarea": "Ir al GYM","hora":"5:00pm", "status":"Pendiente"},
+    tareas = [ # Aqui se crean las tareas 
+       {"id": 1, "tarea": "Comprar chelas", "hora":"1:00pm", "status":"No realizada"},# Tenemos la estructura de tareas con: Id, Tarea(Con su nombre), Hora y Status
+       {"id": 2, "tarea": "Bañar a Tobi","hora":"3:30pm", "status":"Realizada"},# Tenemos la estructura de tareas con: Id, Tarea(Con su nombre), Hora y Status
+       {"id": 3, "tarea": "Ir al GYM","hora":"5:00pm", "status":"Pendiente"},# Tenemos la estructura de tareas con: Id, Tarea(Con su nombre), Hora y Status
     ]
-    return tareas #---lo que retorna
-# que devuelve.-----
+    return tareas # En esta parte nos envia todas las tareas definidas 
 
 # -----------------------------------------------------------------------------------------
 # Endpoint Eliminar
-@app.get("/Eliminar")
+@app.get("/Eliminar")  # Este es el enlace del Endpoint de Eliminar
 def Elimar():
     EliminarTarea = [
-        {"Accion": "Eliminar"},
-        {"id": 0, "tarea": "Escribir Tarea", "hora":"Seleccionar", "status":"Seleccionar"},
-    ]
-    return EliminarTarea
+        {"Accion": "Eliminar"},  # Aqui definimos la accionn que hara 
+        {"id": 0, "tarea": "Escribir Tarea", "hora":"Seleccionar", "status":"Seleccionar"},  # Y aqui como dejara la estructura de las tareas al dar Eliminar 
+    ]                                                                                        
+    return EliminarTarea # Aqui nos regresa a la tarea Eliminada pero con los parametros vacios
 
-
+# -----------------------------------------------------------------------------------------
 # Endpoint Editar
-@app.get("/Editar")
+@app.get("/Editar")  # Este es el enlace del Endpoint Editar 
 def Editar():
     EditarTarea = [
-        {"Accion": "Editar Tarea"},
-        {"id": 0, "tarea": "Renombrar Tarea", "hora":"Seleccionar", "status":"Seleccionar"},
+        {"Accion": "Editar Tarea"}, # Esta es nuestra accion que hara 
+        {"id": 0, "tarea": "Renombrar Tarea", "hora":"Seleccionar", "status":"Seleccionar"}, # Y aqui tenemos la estructura de la tarea y lo que se puede editar
     ]
-    return EditarTarea
+    return EditarTarea # Aqui nos regresa la tarea Editada
 
+
+# -----------------------------------------------------------------------------------------
 # Endpoint Completadas
-@app.get("/Completadas")
+@app.get("/Completadas") # Este es el enlace del Endpoint de Tareas Completadas
 def Completadas():
     TareasCompletadas = [
-        {"Accion": "!FELICIDADES¡TAREA COMPLETADA."},
-        {"id": 0, "tarea": "Tarea Completada", "hora":"Finalizado", "status":"Finalizado"},
+        {"Accion": "!FELICIDADES¡TAREA COMPLETADA."}, # Aqui tenemos un mensaje de que se completo la tarea
+        {"id": 0, "tarea": "Tarea Completada", "hora":"Finalizado", "status":"Finalizado"}, # Y aqui como quedaria la estructura de la tarea completada
     ]
-    return TareasCompletadas
+    return TareasCompletadas # Nos retorna los parametros de la tarea ya completados 
 
+
+# -----------------------------------------------------------------------------------------
 # Endpoint Con Fecha
-@app.get("/tareaconfecha")
+@app.get("/tareaconfecha")  # Este es el enlace del Endpoint de la Fecha
 def tareaconfecha():
     fechas = [
        {"id": 1, "Mes": "Enero", "Dias":"1, 2, 3, 4, 5, 6, 7, 8, 9, 10,"
                                         " 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,"
-                                        " 21, 22, 23, 24, 25, 26, 27, 28, 29, 30"},
+                                        " 21, 22, 23, 24, 25, 26, 27, 28, 29, 30"}, # En cada uno definimos un mes con: Id, Mes (con nombre), y los dias que tiene
        {"id": 2, "Mes": "Febrero", "Dias":"1, 2, 3, 4, 5, 6, 7, 8, 9, 10,"
                                         " 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,"
                                         " 21, 22, 23, 24, 25, 26, 27, 28, 29, 30"},
@@ -116,4 +124,4 @@ def tareaconfecha():
                                         " 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,"
                                         " 21, 22, 23, 24, 25, 26, 27, 28, 29, 30"},
     ]
-    return fechas
+    return fechas # En esta parte nos devuelve todos los meses que tenemos 
