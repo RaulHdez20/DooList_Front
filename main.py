@@ -10,17 +10,17 @@ from app.database.rutas.editar import router as editar_router
 from app.database.rutas.completadas import router as completadas_router
 from app.database.rutas.fechas import router as fechas_router
 from app.database.rutas.verificar import router as verificar_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[""],  # Permite todos los orígenes
+    allow_origins=["http://localhost:8081"],  # Cambia esto según el frontend que uses
     allow_credentials=True,
-    allow_methods=[""],
-    allow_headers=[""],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-
 
 # Incluir todos los routers
 app.include_router(conexion_router)
