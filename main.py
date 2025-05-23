@@ -11,6 +11,7 @@ from app.database.rutas.completadas import router as completadas_router
 from app.database.rutas.fechas import router as fechas_router
 from app.database.rutas.verificar import router as verificar_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.database.rutas import acciones 
 app = FastAPI()
 
 app.add_middleware(
@@ -22,6 +23,7 @@ app.add_middleware(
 )
 
 # Incluir todos los routers
+app.include_router(acciones.router)
 app.include_router(conexion_router)
 app.include_router(usuarios_router)
 app.include_router(tareas_router)
@@ -30,6 +32,7 @@ app.include_router(editar_router)
 app.include_router(completadas_router)
 app.include_router(fechas_router)
 app.include_router(verificar_router)
+
 
 @app.get("/")
 def root():
