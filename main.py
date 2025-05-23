@@ -14,14 +14,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database.rutas import acciones 
 app = FastAPI()
 
+# Configuración CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8081"],  # Cambia esto según el frontend que uses
+    allow_origins=["http://localhost:8080"],  # O "*" si estás probando
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Incluir todos los routers
 app.include_router(acciones.router)
 app.include_router(conexion_router)
@@ -37,3 +37,8 @@ app.include_router(verificar_router)
 @app.get("/")
 def root():
     return {"mensaje": "Hola, este es el backend sin base de datos"}
+
+
+
+
+

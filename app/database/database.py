@@ -7,3 +7,4 @@ def get_connection():
         password="Rulocraft7",
         database="tareas_db"
     )
+
