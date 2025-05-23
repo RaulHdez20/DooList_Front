@@ -11,7 +11,6 @@ from app.database.rutas.completadas import router as completadas_router
 from app.database.rutas.fechas import router as fechas_router
 from app.database.rutas.verificar import router as verificar_router
 from fastapi.middleware.cors import CORSMiddleware
-
 app = FastAPI()
 
 app.add_middleware(
