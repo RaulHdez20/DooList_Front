@@ -12,6 +12,7 @@ from app.database.rutas.fechas import router as fechas_router
 from app.database.rutas.verificar import router as verificar_router
 from fastapi.middleware.cors import CORSMiddleware
 from app.database.rutas import acciones 
+from app.database.rutas.exportar import router as exportar_router
 app = FastAPI()
 
 # Configuración CORS
@@ -32,6 +33,7 @@ app.include_router(editar_router)
 app.include_router(completadas_router)
 app.include_router(fechas_router)
 app.include_router(verificar_router)
+app.include_router(exportar_router)
 
 
 @app.get("/")

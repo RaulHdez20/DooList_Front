@@ -1,0 +1,9 @@
+ID,Título,Descripción,Hora,Status
+1,Comprar chelas,Ir a la tienda,1:00pm,No realizada
+2,Bañar a Tobi,Usar jabón,3:30pm,Realizada
+
+Resumen de tareas por estado
+No realizada,1
+Realizada,1
+
+Porcentaje de tareas completadas,0.0%
